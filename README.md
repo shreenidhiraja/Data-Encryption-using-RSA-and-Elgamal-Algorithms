@@ -17,6 +17,7 @@ embedding them onto an image so that it will be harder for the hackers to get to
 the credentials are stored as they would be searching for text-based files.
 
 Encryption Algorithms Used:
+
 I. RSA Algorithm:
 
 The RSA algorithm utilizes both a public key and a private key because it is an asymmetric
@@ -25,57 +26,57 @@ and should never be disclosed, contrary to what their names imply. A public key 
 publicly.
 How the RSA algorithm functions are demonstrated in the subsequent steps:
 1. First, create the keys
- Choose the big prime numbers x and y. It is necessary for the prime numbers to be huge
+- Choose the big prime numbers x and y. It is necessary for the prime numbers to be huge
 in order for someone to have trouble deciphering them.
- Calculate n= x*y
- Determine the value of the totient function ϕ(n)=(x−1)(y−1)
- Choose an integer e that is both coprime to ϕ(n) and 1<e<ϕ(n).
- The public key is made up of a pair of numbers (n,e).
- Determine d so that e.d = 1 mod ϕ(n).
+- Calculate n= x*y
+- Determine the value of the totient function ϕ(n)=(x−1)(y−1)
+- Choose an integer e that is both coprime to ϕ(n) and 1<e<ϕ(n).
+- The public key is made up of a pair of numbers (n,e).
+- Determine d so that e.d = 1 mod ϕ(n).
 2. Encryption
- The ciphertext C is computed as follows given a plaintext P, which is expressed as a
+- The ciphertext C is computed as follows given a plaintext P, which is expressed as a
 number: C= P^e mod n
 3. Decryption
- You can find the plaintext by using the private key (n,d), P= C^d mod n.
+- You can find the plaintext by using the private key (n,d), P= C^d mod n.
 
 II. RSA Digital Signature Scheme
 
 The RSA digital signature scheme refers to the application of the RSA concept to the
 signing and validation of messages.
 The function of the private and public keys is altered by a digital signature scheme.
- Only the sender's private and public keys are used, not the recipient's
- The document is signed using the sender's private key, and the recipient verifies it using
+- Only the sender's private and public keys are used, not the recipient's
+- The document is signed using the sender's private key, and the recipient verifies it using
 the sender's public key.
- The same function is used by the signing and verifying sets, but with different inputs.
+- The same function is used by the signing and verifying sets, but with different inputs.
 The verifier checks for congruence by comparing the message with the function's
 output. The message is accepted if the outcome is two true.
- Key generation for the RSA cryptosystem and the RSA digital signature technique are
+- Key generation for the RSA cryptosystem and the RSA digital signature technique are
 identical.
 Working:
- The digital signature S calculated over the message M is what Sender A intends to
+- The digital signature S calculated over the message M is what Sender A intends to
 convey to the receiver B together with the message M.
- Step 1: The sender A calculates the message digest MD1 over the original message M
+- Step 1: The sender A calculates the message digest MD1 over the original message M
 using the message digest algorithm.
- Step 2: Using her private key, sender A now encrypts the message digest. The digital
+- Step 2: Using her private key, sender A now encrypts the message digest. The digital
 signature is the result of this operation.
- Step 3: The sender A now transmits the recipient B the original message M and digital
+- Step 3: The sender A now transmits the recipient B the original message M and digital
 signature DS.
- Step 4: After receiving the initial message M and the sender A's digital signature,
+- Step 4: After receiving the initial message M and the sender A's digital signature,
 receiver B calculates its own message digest MD2 using the same message digest
 technique as sender A.
- Step 5: The receiver B now decrypts the digital signature using sender A's public key.
+- Step 5: The receiver B now decrypts the digital signature using sender A's public key.
 It should be noted that A created the digital signature by using his private key to decrypt
 the message digest MD1. Therefore, it can only be unlocked with A's public key. The
 original message digest, which A (MD1) calculated in step 1, is the procedure's output.
- Step 6: The next step is for B to compare the next two message digests.
+- Step 6: The next step is for B to compare the next two message digests.
 o 1)It had calculated MD2 in step 4
 o 2)Step 5 involves retrieving MD1 from A's digital signature.
 o The following facts are established if MD1 = MD2.
- a. B acknowledges that the initial message (M) from A is the true,
+- a. B acknowledges that the initial message (M) from A is the true,
 unaltered message.
- b. B is also confident that A sent the message and not someone else 
+- b. B is also confident that A sent the message and not someone else 
 associated who was impersonating A.
- As a result, the digital signature idea is very solid, safe, and trustworthy.
+- As a result, the digital signature idea is very solid, safe, and trustworthy.
 
 III. Elgamal Algorithm
 
@@ -118,22 +119,22 @@ incorporates the hash function required for the security evaluation.
 The global ingredients of an Elgamal digital signature are the prime number q and a, which is
 a primitive root of q, much like with Elgamal encryption.
 User A generates a private/public key pair as follows.
- Generate a random integer XA, such that 1 < XA < q - 1.
- Compute YA = aXA mod q.
- A’s private key is XA; A’s public key is {q, a, YA}.
+- Generate a random integer XA, such that 1 < XA < q - 1.
+- Compute YA = aXA mod q.
+- A’s private key is XA; A’s public key is {q, a, YA}.
 User A’s Work:
 To sign a message M, user A first computes the hash m = H(M), such that m is an integer in
 the range 0 ≤m ≤ q - 1. A then forms a digital signature as follows.
- Choose a random integer K such that 1 ≤ K ≤ q - 1 and gcd (K, q - 1) = 1. That is, K is
+- Choose a random integer K such that 1 ≤ K ≤ q - 1 and gcd (K, q - 1) = 1. That is, K is
 relatively
 prime to q - 1.
- . Compute S1 = aK mod q. Note that this is the same as the computation of C1
+- Compute S1 = aK mod q. Note that this is the same as the computation of C1
 for Elgamal encryption.
- Compute K-1 mod (q - 1). That is, compute the inverse of K modulo q - 1.
- Compute S2 = K-1(m - XAS1) mod (q - 1).
- The signature consists of the pair (S1, S2).
+- Compute K-1 mod (q - 1). That is, compute the inverse of K modulo q - 1.
+- Compute S2 = K-1(m - XAS1) mod (q - 1).
+- The signature consists of the pair (S1, S2).
 User B’s Work:
 Any user B can verify the signature as follows.
- Compute V1 = α m mod q.
- Compute V2 = (YA)S1(S1)S2 mod q.
+- Compute V1 = α m mod q.
+- Compute V2 = (YA)S1(S1)S2 mod q.
 The signature is valid if V1 = V2. Let us demonstrate that this is so.
