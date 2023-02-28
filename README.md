@@ -138,3 +138,8 @@ Any user B can verify the signature as follows.
 - Compute V1 = α m mod q.
 - Compute V2 = (YA)S1(S1)S2 mod q.
 The signature is valid if V1 = V2. Let us demonstrate that this is so.
+
+Result:
+
+Elgamal Keys + RSA Keys
+
